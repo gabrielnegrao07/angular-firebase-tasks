@@ -1,3 +1,4 @@
+import { Task } from './models/task.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,14 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  tasks$: Observable<any[]>;
+  tasks$: Observable<Task[]>;
 
   constructor(
     private db: AngularFirestore
   ){}
 
   ngOnInit(): void {
-    this.tasks$ = this.db.collection<>;
+    this.tasks$ = this.db.collection<Task>('/tasks').valueChanges();
   }
 
 }
